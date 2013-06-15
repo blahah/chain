@@ -1,12 +1,11 @@
-# chain
+chain
+=====
 
-===
-bioinformatic pipelines with minimal effort
-===
+_bioinformatic pipelines with minimal effort_
 
-*chain* is a tool for rapid development, exploration, and use of bioinformatic pipelines. *chain* lets you create and run new pipelines in seconds. Because you can store, share and modify chains, pipeline optimisation becomes easy and reproducible analysis is trivial. Programs can be added with a small amount of code. *chain* comes with several commonly-used bioinformatics tools built in.
+**chain** is a tool for rapid development, exploration, and use of bioinformatic pipelines. *chain* lets you create and run new pipelines in seconds. Because you can store, share and modify chains, pipeline optimisation becomes easy and reproducible analysis is trivial. Programs can be added with a small amount of code. *chain* comes with several commonly-used bioinformatics tools built in.
 
-## Example workflow
+### Example workflow
 
 Let's see how it works with some high-throughput RNA sequencing examples.
 
