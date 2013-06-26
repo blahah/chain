@@ -3,6 +3,12 @@ chain
 
 _bioinformatic pipelines with minimal effort_
 
+## Warning
+
+This project is pre-alpha. Please don't use the code for anything serious or post issues until we reach alpha.
+
+## Introduction
+
 **chain** is a tool for rapid development, exploration, and use of bioinformatic pipelines. **chain** lets you create and run new pipelines in seconds. Because you can store, share and modify chains, pipeline optimisation becomes easy and reproducible analysis is trivial. Programs can be added with a small amount of code. **chain** comes with several commonly-used bioinformatics tools built in.
 
 ### Example workflow
