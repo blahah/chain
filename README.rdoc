@@ -1,0 +1,6 @@
+= chain
+
+Describe your project here
+
+:include:chain.rdoc
+

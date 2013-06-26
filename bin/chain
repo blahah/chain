@@ -1,0 +1,140 @@
+#!/usr/bin/env ruby
+require 'gli'
+begin # XXX: Remove this begin/rescue before distributing your app
+require 'chain'
+rescue LoadError
+  STDERR.puts "In development, you need to use `bundle exec bin/chain` to run your app"
+  STDERR.puts "At install-time, RubyGems will make sure lib, etc. are in the load path"
+  STDERR.puts "Feel free to remove this message from bin/chain now"
+  exit 64
+end
+
+include GLI::App
+
+program_desc 'bionformatic pipelines with minimal effort'
+
+version Chain::VERSION
+
+# desc 'Describe some switch here'
+# switch [:s, :switch]
+
+# desc 'Describe some flag here'
+# default_value 'the default'
+# arg_name 'The name of the argument'
+# flag [:f, :flagname]
+
+desc 'Define a new pipeline'
+arg_name 'New'
+command :new do |c|
+  # c.desc 'Describe a switch to new'
+  # c.switch :s
+
+  c.desc 'Name of the new pipeline'
+  c.arg_name 'Name'
+  c.flag [:n, :name]
+
+  c.desc 'Description of the pipeline'
+  c.arg_name 'Description'
+  c.flag [:d, :desc]  
+
+  c.desc 'List of programs (separated by :)'
+  c.arg_name 'Programs'
+  c.flag [:p, :programs]
+
+  c.action do |global_options,options,args|
+
+    # Your command logic here
+     
+    # If you have any errors, just raise them
+    # raise "that command made no sense"
+
+    puts "new command ran"
+    p options
+    p global_options
+    p args
+  end
+end
+
+desc 'Run a saved pipeline'
+command :run do |c|
+
+  c.desc 'Left reads (of paired-end sequences)'
+  c.arg_name 'Left'
+  c.flag [:l, :left]
+
+  c.desc 'Right reads (of paired-end sequences)'
+  c.arg_name 'Right'
+  c.flag [:r, :right]
+
+  c.desc 'Unpaired reads'
+  c.arg_name 'Unpaired'
+  c.flag [:u, :unpaired]
+
+  c.desc 'Assembly file'
+  c.arg_name 'Assembly'
+  c.flag [:a, :assembly]
+
+  c.desc 'Reference file'
+  c.arg_name 'Reference'
+  c.flag [:f, :reference]
+
+  c.action do |global_options,options,args|
+    puts "run command ran"
+  end
+
+end
+
+desc 'Describe list here'
+arg_name 'Describe arguments to list here'
+command :list do |c|
+  c.action do |global_options,options,args|
+    puts "list command ran"
+  end
+end
+
+desc 'Describe detail here'
+arg_name 'Describe arguments to detail here'
+command :detail do |c|
+  c.action do |global_options,options,args|
+    puts "detail command ran"
+  end
+end
+
+desc 'Describe protocol here'
+arg_name 'Describe arguments to protocol here'
+command :protocol do |c|
+  c.action do |global_options,options,args|
+    puts "protocol command ran"
+  end
+end
+
+desc 'Describe delete here'
+arg_name 'Describe arguments to delete here'
+command :delete do |c|
+  c.action do |global_options,options,args|
+    puts "delete command ran"
+  end
+end
+
+pre do |global,command,options,args|
+  # Pre logic here
+  # Return true to proceed; false to abort and not call the
+  # chosen command
+  # Use skips_pre before a command to skip this block
+  # on that command only
+  true
+end
+
+post do |global,command,options,args|
+  # Post logic here
+  # Use skips_post before a command to skip this
+  # block on that command only
+end
+
+on_error do |exception|
+  # Error logic here
+  # return false to skip default error handling
+  true
+end
+
+exit run(ARGV)
