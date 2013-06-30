@@ -1,0 +1,3 @@
+name=test
+description=this is a test
+pipeline=trimmomatic>khmer

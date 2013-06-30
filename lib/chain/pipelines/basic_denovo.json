@@ -1,0 +1,45 @@
+{
+    "name": "Transcriptome assembly",
+    "description": "A basic de-novo transcriptome assembly pipeline suitable for producing an un-optimised first-draft assembly of data from a new species"
+    "stages": [
+        {
+            "name": "trim",
+            "program": "trimmomatic"
+        },
+        {
+            "name": "filter_rrna",
+            "program": "filter_rrna"
+        },
+        {
+            "name": "normalize_coverages",
+            "program": "khmer"
+        },
+        {
+            "name": "merged_assembly",
+            "program": "velvetoases_ksweep_merge"
+        },
+        {
+            "name": "dereplicate_contigs",
+            "program": "usearch_cluster",
+            "settings": {
+                "id": 100
+            }
+        },
+        {
+            "name": "split_chimeras",
+            "program": "split_chimeras"
+        },
+        {
+            "name": "dereplicate_contigs",
+            "program": "usearch_cluster_97",
+            "settings": {
+                "id": 97
+            }
+        }
+    ],
+    "inputs": {
+        "left": "fastq",
+        "right": "fastq",
+        "reference": "fasta"
+    }
+}

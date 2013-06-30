@@ -1,0 +1,45 @@
+{
+    "name": "transcriptome assembly",
+    "stages": [
+        {
+            "name": "trim",
+            "required": true,
+        },
+        [
+            {
+                "name": "error_correct",
+                "required": false
+            },
+            {
+                "name": "filter_rrna",
+                "required": false
+            },
+            {
+                "name": "normalise_coverage",
+                "required": false
+            }
+        ],
+        {
+            "group": "assemble",
+            "required": true,
+            "members": [
+                {
+                    "name": "single_assembly"
+                },
+                {
+                    "name": "merged_assembly"
+                }
+            ]
+        },
+        [
+            {
+                "name": "split_chimeras",
+                "required": false
+            },
+            {
+                "name": "dereplicate_contigs",
+                "required": false
+            }
+        ]
+    ]
+}
