@@ -1,4 +1,5 @@
 require 'settings'
+require 'json'
 
 # extend String to implement camelize from Rails
 class String
@@ -9,8 +10,20 @@ class String
 end
 
 class Program
-  def initialize(*)
-    raise NotImplementedError.new("You must implement this")
+  def initialize(spec=nil, opts={})
+    if !spec.nil? && spec.length > 0
+      # parse JSON to hash if necessary
+      if spec.class == String
+        d = JSON.parse(definition)
+      elsif spec.class == Hash
+        d = spec
+      end
+      @name = d[:name]
+      @path = d[:path]
+      @arguments => d[:args]
+    else
+      raise "can't initalize program: invalid specification"
+    end
   end
 
   def self.load(name)
