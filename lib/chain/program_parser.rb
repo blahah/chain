@@ -20,7 +20,7 @@ class ProgramParser
   end
 
   # we hope the program will respond with the help message
-  # to one of these arguments
+  # to one of these flags
   HelpFlags = ['', ' -h', ' -help', ' --help']
 
   def gethelp
@@ -132,7 +132,7 @@ class ProgramParser
 
   # we use these defaults if we can't guess values from the help line
   # having something as a placeholder allows the user to easily replace
-  # the default value without having to create the data structure
+  # the default value without having to create the data structure manually
   Defaults = {
     'string' => 'change me',
     'integer' => 10000,
