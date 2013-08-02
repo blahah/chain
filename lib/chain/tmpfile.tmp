@@ -1,0 +1,124 @@
+tophat: 
+TopHat maps short sequences from spliced transcripts to whole genomes.
+
+Usage:
+    tophat [options] <bowtie_index> <reads1[,reads2,...]> [reads1[,reads2,...]] \
+                                    [quals1,[quals2,...]] [quals1[,quals2,...]]
+
+Options:
+    -v/--version
+    -o/--output-dir                <string>    [ default: ./tophat_out         ]
+    --bowtie1                                  [ default: bowtie2              ]
+    -N/--read-mismatches           <int>       [ default: 2                    ]
+    --read-gap-length              <int>       [ default: 2                    ]
+    --read-edit-dist               <int>       [ default: 2                    ]
+    --read-realign-edit-dist       <int>       [ default: "read-edit-dist" + 1 ]
+    -a/--min-anchor                <int>       [ default: 8                    ]
+    -m/--splice-mismatches         <0-2>       [ default: 0                    ]
+    -i/--min-intron-length         <int>       [ default: 50                   ]
+    -I/--max-intron-length         <int>       [ default: 500000               ]
+    -g/--max-multihits             <int>       [ default: 20                   ]
+    --suppress-hits
+    -x/--transcriptome-max-hits    <int>       [ default: 60                   ]
+    -M/--prefilter-multihits                   ( for -G/--GTF option, enable
+                                                 an initial bowtie search
+                                                 against the genome )
+    --max-insertion-length         <int>       [ default: 3                    ]
+    --max-deletion-length          <int>       [ default: 3                    ]
+    --solexa-quals
+    --solexa1.3-quals                          (same as phred64-quals)
+    --phred64-quals                            (same as solexa1.3-quals)
+    -Q/--quals
+    --integer-quals
+    -C/--color                                 (Solid - color space)
+    --color-out
+    --library-type                 <string>    (fr-unstranded, fr-firststrand,
+                                                fr-secondstrand)
+    -p/--num-threads               <int>       [ default: 1                   ]
+    -R/--resume                    <out_dir>   ( try to resume execution )
+    -G/--GTF                       <filename>  (GTF/GFF with known transcripts)
+    --transcriptome-index          <bwtidx>    (transcriptome bowtie index)
+    -T/--transcriptome-only                    (map only to the transcriptome)
+    -j/--raw-juncs                 <filename>
+    --insertions                   <filename>
+    --deletions                    <filename>
+    -r/--mate-inner-dist           <int>       [ default: 50                  ]
+    --mate-std-dev                 <int>       [ default: 20                  ]
+    --no-novel-juncs
+    --no-novel-indels
+    --no-gtf-juncs
+    --no-coverage-search
+    --coverage-search
+    --microexon-search
+    --keep-tmp
+    --tmp-dir                      <dirname>   [ default: <output_dir>/tmp ]
+    -z/--zpacker                   <program>   [ default: gzip             ]
+    -X/--unmapped-fifo                         [use mkfifo to compress more temporary
+                                                 files for color space reads]
+
+Advanced Options:
+    --report-secondary-alignments
+    --no-discordant
+    --no-mixed
+
+    --segment-mismatches           <int>       [ default: 2                ]
+    --segment-length               <int>       [ default: 25               ]
+
+    --bowtie-n                                 [ default: bowtie -v        ]
+    --min-coverage-intron          <int>       [ default: 50               ]
+    --max-coverage-intron          <int>       [ default: 20000            ]
+    --min-segment-intron           <int>       [ default: 50               ]
+    --max-segment-intron           <int>       [ default: 500000           ]
+    --no-sort-bam                              (Output BAM is not coordinate-sorted)
+    --no-convert-bam                           (Do not output bam format.
+                                                Output is <output_dir>/accepted_hit.sam)
+    --keep-fasta-order
+    --allow-partial-mapping
+
+Bowtie2 related options:
+  Preset options in --end-to-end mode (local alignment is not used in TopHat2)
+    --b2-very-fast
+    --b2-fast
+    --b2-sensitive
+    --b2-very-sensitive
+
+  Alignment options
+    --b2-N                         <int>       [ default: 0                ]
+    --b2-L                         <int>       [ default: 20               ]
+    --b2-i                         <func>      [ default: S,1,1.25         ]
+    --b2-n-ceil                    <func>      [ default: L,0,0.15         ]
+    --b2-gbar                      <int>       [ default: 4                ]
+
+  Scoring options
+    --b2-mp                        <int>,<int> [ default: 6,2              ]
+    --b2-np                        <int>       [ default: 1                ]
+    --b2-rdg                       <int>,<int> [ default: 5,3              ]
+    --b2-rfg                       <int>,<int> [ default: 5,3              ]
+    --b2-score-min                 <func>      [ default: L,-0.6,-0.6      ]
+
+  Effort options
+    --b2-D                         <int>       [ default: 15               ]
+    --b2-R                         <int>       [ default: 2                ]
+
+Fusion related options:
+    --fusion-search
+    --fusion-anchor-length         <int>       [ default: 20               ]
+    --fusion-min-dist              <int>       [ default: 10000000         ]
+    --fusion-read-mismatches       <int>       [ default: 2                ]
+    --fusion-multireads            <int>       [ default: 2                ]
+    --fusion-multipairs            <int>       [ default: 2                ]
+    --fusion-ignore-chromosomes    <list>      [ e.g, <chrM,chrX>          ]
+
+    --fusion-do-not-resolve-conflicts          [this is for test purposes  ]
+
+SAM Header Options (for embedding sequencing run metadata in output):
+    --rg-id                        <string>    (read group ID)
+    --rg-sample                    <string>    (sample ID)
+    --rg-library                   <string>    (library ID)
+    --rg-description               <string>    (descriptive string, no tabs allowed)
+    --rg-platform-unit             <string>    (e.g Illumina lane ID)
+    --rg-center                    <string>    (sequencing center name)
+    --rg-date                      <string>    (ISO 8601 date of the sequencing run)
+    --rg-platform                  <string>    (Sequencing platform descriptor)
+
+    for detailed help see http://tophat.cbcb.umd.edu/manual.html

@@ -1,0 +1,19 @@
+{
+	"name": "bowtie",
+	"path": "/usr/local/bin/bowtie-1.0.0/bowtie",
+	"positional_arguments": [
+		{
+			"flag": "-1",
+			"name": "Comma-separated list of files containing upstream mates",
+			"required": true
+		},
+		{
+			"flag": "-2",
+			"name": "Comma-separated list of files containing downstream mates",
+			"required": false
+		}
+	]
+	"optional_arguments": {
+
+	}
+}
