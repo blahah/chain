@@ -17,7 +17,11 @@ Let's see how it works with some high-throughput RNA sequencing examples.
 
 Designing a reads-to-expression pipeline for de-novo transcriptomics, using default settings, can be as simple as:
 
-`chain --name denovotrans --description "a gold-standard de-novo transcriptomics pipeline, ideal for first pass analysis of a new species" --define trimmomatic:khmer:velvetoases:gapfiller:cap3:chiminus:tada:express`
+```
+chain --name denovotrans \
+ --description "a gold-standard de-novo transcriptomics pipeline" \
+ --define trimmomatic:khmer:velvetoases:gapfiller:cap3:chiminus:transrate:express`
+```
 
 Pipeline definitions are stored in plaintext .chain files, so you can share them, import them, or define them directly in the file. The same pipeline would be defined in plaintext as:
 
